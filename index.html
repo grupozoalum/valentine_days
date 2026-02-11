@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="gif-container" id="main-gif">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExajN5YnhpbG55a2hlaDM1aXN6bGFzMHc2bWljd243aGZzZ3J3am5yciZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute Gif">
+        </div>
+
+        <div id="question-block">
+            <h1>¿Quieres ser mi San Valentín?</h1>
+            <p>Prometo invitar los tacos (o lo que tú quieras) 🌮❤️</p>
+            
+            <div class="btn-group">
+                <button id="yesBtn">¡Siiiii!</button>
+                <button id="noBtn">No</button>
+            </div>
+        </div>
+
+        <div id="success-message" class="hidden">
+            <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Gato feliz">
+            <h2>¡Sabía que dirías que sí! ❤️</h2>
+            <p>Nos vemos el Jueves. TE AMOOOOOO 3 MILLONES.</p>
+        </div>
+    </div>
+
+    <script>
+        // Mantenemos el JS aquí para no hacerte crear 3 archivos, 
+        // pero podrías moverlo a un 'script.js' si prefieres.
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const questionBlock = document.getElementById('question-block');
+        const successMessage = document.getElementById('success-message');
+        const mainGif = document.getElementById('main-gif');
+
+        function moveButton() {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+
+            // Mueve el botón a una posición random dentro de la ventana visible
+            const newX = Math.random() * (windowWidth - btnWidth - 100) + 50;
+            const newY = Math.random() * (windowHeight - btnHeight - 100) + 50;
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+        }
+
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveButton(); });
+
+        yesBtn.addEventListener('click', () => {
+            questionBlock.style.display = 'none';
+            mainGif.style.display = 'none';
+            successMessage.classList.remove('hidden');
+            successMessage.classList.add('visible');
+        });
+    </script>
+</body>
+</html>
